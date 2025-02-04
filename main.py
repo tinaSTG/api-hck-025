@@ -33,16 +33,21 @@ def search_data(id:int):
 
 # untuk menampilkan swagerai http://127.0.0.1:8000/docs
 
-# #  menambahkan data
-# @app.post("/data/{new_data}")
-# def add_data(data:dict):
-#     new_data = new_data.string('-')
-#     new_row = {'id':new_data[0],
-#                'nama':new_data[1],
-#                'age':new_data[2],
-#                'job':new_data[3]}
+# menambahkan data
+@app.post("/data/add")
+def add_data(new_data:dict):
+    global data
     
-#     new_row = pd.DataFrame([new_row])
-#     data = pd.concat([data, new_row],ignore_index=True)
+    new_row = pd.DataFrame([new_data])
+    data = pd.concat([data, new_row], ignore_index=True)
 
-#     return {'message':'data id updated !'}
+    return {'message':data.to_dict(orient='records')}
+
+
+
+
+
+
+
+
+
